@@ -7,4 +7,4 @@ services:
     restart: always
     container_name: dev-frontend
     ports:
-      - "5050:3003"
+      - "8085:3000"
