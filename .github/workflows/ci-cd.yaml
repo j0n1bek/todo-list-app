@@ -6,15 +6,23 @@ on:
   pull_request:
     branches: [ master ]
  
+
 jobs:
-  check_and_build:
-    runs-on: self-hosted
-    permissions:
-        contents: read
-        packages: write
+  build:
+    runs-on: 
+      - self-hosted
+      - label-1
+      - self-runner
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
- 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+    - uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Install Dependencies for dev
+      if: github.ref == 'refs/heads/master'
+      run: sudo docker compose up -d --build dev
+
+    - name: Install Dependencies for prod
+      if: github.ref == 'refs/heads/master'
+      run: sudo docker compose up -d --build prod
