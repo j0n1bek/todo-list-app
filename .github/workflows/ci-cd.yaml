@@ -2,10 +2,11 @@ name: Github Actions CI/CD
  
 on:
   push:
-    branches: [ master ]
+    branches:
+      - "dev"
   pull_request:
-    branches: [ master ]
- 
+    branches:
+      - "prod"
 
 jobs:
   build:
