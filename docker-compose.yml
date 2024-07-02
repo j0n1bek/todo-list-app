@@ -7,4 +7,12 @@ services:
     restart: always
     container_name: dev-frontend
     ports:
-      - "5050:3003"
+      - "8085:3000"
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: prod-frontend
+    ports:
+      - "8090:3000"
