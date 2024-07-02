@@ -1,0 +1,10 @@
+version: '3.1'
+services:
+  dev-front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: dev-frontend
+    ports:
+      - "5454:8080"
