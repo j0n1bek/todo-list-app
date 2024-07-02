@@ -22,5 +22,5 @@ jobs:
       run: sudo docker compose up -d --build dev
 
     - name: Install Dependencies for prod
-      if: github.ref == 'refs/heads/prod'
+      if: github.event.pull_request.base.ref == 'refs/heads/prod'
       run: sudo docker compose up -d --build prod
